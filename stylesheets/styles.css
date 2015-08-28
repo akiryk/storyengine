@@ -1,0 +1,626 @@
+body{
+	background:#003e58;
+	margin:0;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+h1,h2,h3,ul,li{
+	margin:0;
+	padding:0;
+}
+
+a {
+	text-decoration: none;
+	color:#0287be;
+}
+
+/* Margins for content */
+#header-inner,
+#content-inner{
+	width:88%;
+	margin:0 auto;
+}
+
+.light-text{
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.message{
+	border-radius:2px;
+	margin-bottom: 1em;
+	margin-top: -.75em;
+	padding: .75em 1em 1em;
+	background: #d8ff92;
+}
+
+/* ***************************************************** */
+/*                       Header                          */
+/* ***************************************************** */
+
+#header{
+	background:url(../images/mobile-header.png) repeat-x bottom;
+	
+}
+
+#header-inner{
+	width:88%;
+	margin: 0 auto;
+	padding-top:.5em;
+}
+
+h1.brandname{
+	display: block-inline;
+}
+
+h1.brandname a{
+	-webkit-background-size: 67px 24px;
+	background:url(../images/mobile-logo.png) no-repeat;
+	background-size: 67px 24px;
+	display: block;
+	float:left;
+	margin-right:.5em;
+	text-indent: -9999px;
+	width:67px;
+}
+
+.main-menu li.username {
+	color:#fff;
+	display: none;
+}
+
+
+#primary-navigation a{
+	color:#76AABF;
+}
+
+#primary-navigation a:hover{
+	color:rgba(255,255,255,0.8);
+}
+
+ul.main-menu,
+ul.login-menu {
+	font-size:.875em;
+	padding-top:.5em;
+}
+ul.main-menu{
+	float:left;
+}
+ul.login-menu{
+	float:right;
+}
+
+.main-menu li,
+.login-menu li{
+	display: inline;
+	list-style: none;
+	border-right:1px solid #005376;
+	margin-right:.3em;
+	padding-right:.6em;
+}
+
+#header li.solo{
+	border-right:none;
+	margin:0;
+	padding:0;
+}
+
+.login-menu li.last,
+.main-menu li.last {
+	border-right:none;
+	padding-right:0;
+	margin-right:0;
+}
+
+/* ***************************************************** */
+/*                  Javascript MENU                      */
+/* ***************************************************** */
+#menu-link{
+	display: none;
+}
+
+#menu-link.expander{
+	display: block;
+	background:url(../images/mobile-expander.png) no-repeat right .8em;
+	float:right;
+	padding-right:1em;
+	cursor: pointer;
+	padding-top:.5em;
+	color:#76aabf;
+	font-size:1em;
+}
+
+#primary-navigation.collapsible-menu{
+	/* attached by jquery to the primary nav */
+	clear:both;
+	line-height:2em;
+	height:3.5em;
+}
+
+/* ***************************************************** */
+/*                       Button                          */
+/* ***************************************************** */
+a.button,
+form input[type=submit]{
+	display: block;
+	background: #c00d40;
+background: -moz-linear-gradient(top,  rgba(199,16,67,1) 48%, rgba(166,5,50,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(48%,rgba(199,16,67,1)), color-stop(100%,rgba(166,5,50,1)));
+background: -webkit-linear-gradient(top,  rgba(199,16,67,1) 48%,rgba(166,5,50,1) 100%);
+background: -o-linear-gradient(top,  rgba(199,16,67,1) 48%,rgba(166,5,50,1) 100%);
+background: -ms-linear-gradient(top,  rgba(199,16,67,1) 48%,rgba(166,5,50,1) 100%);
+background: linear-gradient(top,  rgba(199,16,67,1) 48%,rgba(166,5,50,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c71043', endColorstr='#a60532',GradientType=0 );
+	border:1px solid #a90735;
+	border-radius: 2px;
+	color:#fff;
+	padding: .5em 0 .7em;
+	width: 9em;
+	text-align: center;
+}
+
+a.button.top{
+	margin:.75em 0 2em;
+}
+
+a.button:hover,
+form input[type=submit]:hover{
+background: rgb(185,12,61);
+background: -moz-linear-gradient(top,  rgba(185,12,61,1) 48%, rgba(145,5,45,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(48%,rgba(185,12,61,1)), color-stop(100%,rgba(145,5,45,1)));
+background: -webkit-linear-gradient(top,  rgba(185,12,61,1) 48%,rgba(145,5,45,1) 100%);
+background: -o-linear-gradient(top,  rgba(185,12,61,1) 48%,rgba(145,5,45,1) 100%);
+background: -ms-linear-gradient(top,  rgba(185,12,61,1) 48%,rgba(145,5,45,1) 100%);
+background: linear-gradient(top,  rgba(185,12,61,1) 48%,rgba(145,5,45,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b90c3d', endColorstr='#91052d',GradientType=0 );
+	border: 1px solid #880329;
+}
+
+a.button.mini{
+	padding:.1em 0 .2em;
+	width:5em;
+	font-size:.825em;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+form input[type=submit]{
+	font-size:1em;
+}
+
+/* ***************************************************** */
+/*                       EDITING                         */
+/* ***************************************************** */
+textarea{
+	width:100%;
+	height:20em;
+	font-size:1em;
+	padding:1em;
+	font-family:Georgia, Times, serif;
+	border:0;
+  line-height:1.375em;
+  box-sizing: border-box;
+  margin-bottom:1em;
+}
+
+#edit-options{
+	margin-top:1em;
+}
+
+label{
+	margin-bottom: .25em;
+	color:#777;
+	display: block;
+	font-size:1em;
+}
+
+label .helptext{
+	font-size:.75em;
+	color:#999;
+}
+#endpoint label{
+	color:#222;
+	font-size:.8em;
+}
+
+h2.page-title span{
+	font-weight: bold;
+}
+
+
+form input.submit{
+	float:left;
+	margin-right:.75em;
+}
+
+#endpoint{
+	margin-bottom:1em;
+}
+
+input.endtarget{
+	float: left;
+	margin-right: .75em;
+}
+
+.update-options{
+	float: left;
+	line-height:2.5em;
+}
+/* ***************************************************** */
+/*                       CONTENT                         */
+/* ***************************************************** */
+#content{
+	background:url(../images/mobile-bg.png) repeat;
+	-webkit-background-size:100px 100px;
+	background-size:100px 100px;
+	overflow: hidden;
+	color:#222;
+}
+
+#content-inner{
+	padding:1.875em 0 4em 0;
+}
+
+h2.page-title{
+  border-bottom:1px solid #c9c9c9;
+	color:#c81044;
+	font-size:1.3125em; /* 21px or 44px = 2.75em; */
+	font-weight: 100;
+	margin-bottom:1em;
+	padding-bottom:.42857em;
+}
+
+h2.page-title.alt{
+  border-bottom:none;
+	margin-bottom:.6em;
+}
+
+h2.page-title a{
+	color:#c81044;
+}
+
+h2.page-title a:hover{
+	color:#222;
+}
+
+/* ***************************************************** */
+/*                     STORY CHAPTER                     */
+/* ***************************************************** */
+#options{
+	list-style: none;
+}
+
+#options li{
+	margin:0 0 1em;
+	line-height:130%;
+}
+
+.unfinished{ /* When the option text exists but doesn't link to anything */
+	font-style: italic;
+	color: #333;
+}
+
+#chapter-block,
+.body{
+  margin:2em 0 1.5em;
+	font-size:1.0625em; /* 17px */
+	font-family:Georgia, Times, serif;
+	line-height:1.47em; /* 25px */
+	color:#222;
+}
+
+/* Used on orphan.php */
+.body{
+	margin-top:.5em;
+}
+.body a:hover {
+	color:#222;	
+}
+
+h4.level{
+	font-weight: 100;
+	color:#777;
+	margin-bottom:.5em;
+}
+
+h4.level .numeric{
+	font-weight: 400;
+}
+
+.option-meta {
+	color:#949494;
+}
+
+.option-meta a{
+	font-size:.75em;
+	color:#c81044;
+}
+
+#story-end p{
+	color:#555;
+}
+
+.description{
+	font-style: italic;
+	color:#777;
+}
+
+#edit-chapter a{
+	color: #BBB;
+	font-family:helvetica, arial, sans-serif;
+	font-size:.75em;
+}
+
+#edit-chapter a:hover{
+	color:#222;
+}
+
+/* ***************************************************** */
+/*                       STORY LISTS                     */
+/* ***************************************************** */
+
+.story-list li{
+	list-style: none;
+	margin:0 0 2em;
+	line-height:130%;
+}
+
+.story-list a,
+#options a,
+#story-end a {
+	font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+.story-list a:hover,
+#options a:hover {
+	padding-bottom:.2em;
+	color:#222;
+}
+.story-list .secondary{
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color:#c4c4c4;
+	padding-left:.6em;
+}
+
+/* My stories page */
+
+li.my-story{
+	clear: both;
+	overflow: hidden;
+	border-bottom: 1px dotted #CCC;
+	padding-bottom: 1.25em;
+	margin-bottom: 1.25em;
+}
+.story-options {
+	/* Edit orphans or delete */
+	margin-top:.5em;
+}
+.story-options a{
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-size:.825em;
+}
+.menu-edit-link{
+	float:left;
+}
+.delete{
+	float:right;
+}
+/* ***************************************************** */
+/*                       ABOUT PAGE                         */
+/* ***************************************************** */
+
+h2.page-title.alt{	
+	color:#111;
+}
+
+/* ***************************************************** */
+/*                       FORMS                         */
+/* ***************************************************** */
+form input[type=text],
+form input[type=password] { 
+	box-sizing: border-box;
+	color:#222;
+	font-weight:lighter;
+  padding:.375em .5em; 
+ 	margin-bottom:1em;
+ 	border: solid 2px #fff; 
+ 	-webkit-box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, .25);
+  box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, .25);     
+  border-radius: 2px;  
+  outline: 0;  
+  font: normal 1.125em/100% Helvetica, Arial, sans-serif;  
+  width: 100%;  
+  background-color: #ddeff7;  
+}  
+
+.login input.submit {
+	margin-top:3px;
+}
+
+  
+form input[type=text]:focus,
+form input[type=password]:hover {  
+     background-color: #fff;
+}  
+
+textarea,
+form input[type=text].input,
+form input.form-title{
+	background-color:white;
+  -webkit-box-shadow: inset 1px 1px 4px 0px rgba(0, 0, 0, .7);
+  box-shadow: inset 1px 1px 4px 0px rgba(0, 0, 0, .7);
+  border:none;
+  font-size:1em; 
+  line-height:1.5em;  
+}
+
+
+  
+/* ***************************************************** */
+/*                       FOOTER                         */
+/* ***************************************************** */
+#footer{
+	background: url(../images/mobile-footer.png) repeat-x top;
+	clear:both;
+	overflow: hidden;
+}
+
+#footer-nav{
+	width:88%;
+	margin: .75em auto 1em;
+	text-align: center;
+}
+
+#footer-nav a:hover{
+	border-bottom: 1px dotted #0287BE;
+}
+#footer-nav li{
+	display: inline;
+	font-size:.75em;
+	margin-right:.7em;
+	padding-right:1em;
+	border-right:1px solid #528ca4;
+}
+#footer-nav li.last{
+	border-right:none;
+}
+
+/* *********************************************************  */
+/* *****************        USERS       ********************  */
+/* *********************************************************  */
+
+li.person{
+	list-style:none;
+	margin-bottom:1em;
+}
+li.child{
+	list-style: none;
+	display: inline-block;
+	width:40%;
+}
+
+li.label{
+	font-weight: bold;
+}
+li.child.numeric{
+	width:10%;
+}
+
+/* *********************************************************  */
+/* ***************** 768 and larger      ********************  */
+/* *********************************************************  */
+@media screen and (min-width: 768px){
+	body{
+		background: url(../images/bg.png) repeat;
+	}
+	
+	#header{
+		background:#003e58;
+		height:4em;
+		margin-bottom:4em;
+		overflow: visible;
+	}
+	
+	#header-inner{
+		padding-top:0;
+		overflow: hidden;
+		background:url(../images/header-line.png) no-repeat center bottom;
+		height:4em;
+	}
+	
+	#primary-navigation a{
+	color:#28a6db;
+	}
+	#primary-navigation,
+	#content,
+	#shadow {
+		width:59.722222%;
+		margin:0 auto;
+	}
+	
+	#content{
+	  box-shadow: 0 0px 8px 0px rgba(0,0,0,.9);
+	}
+	
+	#primary-navigation{
+		padding-top:.4em;
+	}
+	
+	#content-wrapper,
+	#header-inner {
+		max-width: 1080px;
+		width:100%;
+		margin:0 auto;
+	}
+	
+	#content-inner{
+		width:77%;
+		padding-top:3em;
+	}
+	
+	#brand{
+		margin-top:.5em;
+		margin-left:1em;
+	}
+	h1.brandname a{
+	-webkit-background-size: auto;
+	background:url(../images/logo.png) no-repeat;
+	background-size: auto;
+	display: block;
+	float:left;
+	margin-right:.5em;
+	text-indent: -9999px;
+	width:126px;
+  }
+  
+  ul.main-menu,
+	ul.login-menu {
+	  font-size:1.125em;
+	  padding-top:.5em;
+  }
+  
+  .main-menu li.username {
+		display: inline;
+  }
+
+	#content{
+		border-radius:2px;
+	}
+	
+	#shadow{
+		background:url(../images/shadow.png) no-repeat right;
+		height:35px;
+	}
+	
+	#footer{
+		overflow:visible;
+	}
+	
+	#footer-nav{
+		margin-top:-1.5em;
+	}
+	
+/* EDITING */
+	#edit-options {
+  	margin-bottom: 1em;
+	}
+	.login input.submit,
+	#new-story input.submit {
+		margin-bottom: 3em;
+	}
+	
+	#footer,
+	#header{
+		background-image:none;
+	}
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after {
+  clear: both;
+}

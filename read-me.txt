@@ -1,0 +1,10 @@
+Structure of database:
+A user can have many stories
+A story belongs to only one user
+A story can have many chapters but only one primary chapter	(this is what you read when you begin the story). Primary chapter is flagged in the chapter table.   
+A chapter belongs to just one story
+A chapter can have two child options (each option points to a new chapter). This is reflected in the database in the chapter_option table.
+A chapter can have many parent options (the same chapter can be pointed to from many different places)
+An option points to just one chapter
+
+When you do a mysql_query on database, you get a result set (like an object). If you want to extract properties from that set, you need to say something like $result = mysql_fetch_array($result_set). Or else 	while($result = mysql_fetch_array($result_set) {...}

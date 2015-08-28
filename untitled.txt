@@ -1,0 +1,43 @@
+	
+	$errors = array();
+	
+	// *** FIRST, DELETE THE OPTIONS THAT ARE CONNECTED TO THAT CHAPTER.	
+	$query = "DELETE options.* FROM options ";
+	$query .= "LEFT JOIN chapter_option ";
+	$query .= "ON options.id = chapter_option.option_id ";
+	$query .= "WHERE chapter_option.chapter_id= " . $id;
+	$result_set = mysql_query($query, $connection);
+	confirm_query($result_set);
+	
+	// *** NEXT, DELETE THE CHAPTER
+	
+	$query = "DELETE FROM chapters WHERE id = {$id} LIMIT 1";
+	$result_set = mysql_query($query, $connection);
+	confirm_query($result_set);
+	
+	// *** NEXT, DELETE THE ROWS FROM chapter_option that include this chapter
+	
+	$query = "DELETE FROM chapter_option WHERE chapter_id = {$id}";
+	$result_set = mysql_query($query, $connection);
+	confirm_query($result_set);
+	
+	// *** NEXT, SET TO NULL ANY OPTIONS THAT HAVE THIS  (JUST DELETED) CHAPTER AS THEIR CHILD 
+
+	$query =   "UPDATE 		options
+				SET 		child_chapter	= 	NULL
+				WHERE		child_chapter	=	{$id}";					
+	$result_set = mysql_query($query, $connection);
+	confirm_query($result_set);
+	
+	// AND FINALLY, DELETE THE ROWS IN story_chapter that include this chapter
+	$query	= "DELETE FROM story_chapter WHERE chapter_id = {$id}";
+	$result_set = mysql_query($query, $connection);
+	confirm_query($result_set);
+	
+	// redirect to the parent chapter
+	redirect_to("read_chapter.php?chapter={$parent_id}");
+	
+} else {
+	// subject didn't exist in database
+	redirect_to("index.php");
+}
