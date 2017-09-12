@@ -16,8 +16,8 @@
      		if ($_GET['new_story'] == 1){
 					echo "Your story has just been saved!";
 				}
-			} 
-			
+			}
+
 		?>
 		</div> <!-- #alert -->
 		<h2 class='page-title'>Your Stories</h2>
@@ -28,7 +28,7 @@
 			$result = $pager->getResult();
 		?>
 
-				<ul class="story-list">	
+				<ul class="story-list">
 				<?php
 				//	Loop through stories to create a list
 				while($story = mysql_fetch_array($result)){
@@ -36,7 +36,7 @@
 					// Find how many chapters are in a story. This is just for fun -- to show how long or full a given story is.
 					$total = get_story_children_n($story['id']); ?>
 					<li class="my-story">
-					  <a href="start_new_story.php?story=<?php echo $story['id']?>&chapter=<?php echo $chapter_id?>" 
+					  <a href="start_new_story.php?story=<?php echo $story['id']?>&chapter=<?php echo $chapter_id?>"
 										class="title"><?php print $story['title']; ?></a> <span class='secondary'><?php print $total;?> chapters</span>
 						<div class="story-options">
 						  <div class="menu-edit-link mini-button">
@@ -49,7 +49,9 @@
 			<?php } ?>
 				</ul>
 		<div class="clearfix"><a class="button" href="new_story.php">Create a new story</a></div>
-		<?php $pager->drawPaginationLinks(); ?>
+		<?php
+			// $pager->drawPaginationLinks();
+		?>
 <script type="text/javascript" src="js/story-lists.js"></script>
 <?php include("includes/footer.php"); ?>
 </div> <!-- #wrapper -->

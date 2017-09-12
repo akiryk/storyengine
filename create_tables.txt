@@ -1,0 +1,48 @@
+mysql> CREATE TABLE users (
+    ->       id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    ->       firstname CHAR (30) NOT NULL,
+    ->       lastname CHAR (30) NOT NULL,
+    ->       username CHAR (30) NOT NULL,
+    ->       hashed_password CHAR (40) NOT NULL,
+    ->       PRIMARY KEY (id)
+    ->   );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE stories (
+    -> id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    -> title CHAR (30) NOT NULL
+    -> PRIMARY KEY (id)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(id)
+)' at line 4
+mysql> CREATE TABLE stories ( id MEDIUMINT NOT NULL AUTO_INCREMENT, title CHAR (30) NOT NULL, PRIMARY KEY (id) );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE stories_users (
+    -> story_id MEDIUMINT NOT NULL,
+    -> user_id MEDIUMINT NOT NULL);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE chapters (
+    -> content TEXT,
+    -> beginning INT,
+    -> endpoint INT,
+    -> level INT);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE story_chapter (
+    -> story_id INT,
+    -> chapter_id INT);
+Query OK, 0 rows affected (0.01 sec)
+
+
+CREATE TABLE options (
+    child_chapter INT,
+    content CHAR (40),
+    id INT
+);
+
+mysql> CREATE TABLE chapter_option (
+    -> chapter_id INT,
+    -> option_id INT
+    -> );
