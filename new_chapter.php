@@ -192,6 +192,11 @@
 			 Create chapter for<span> <?php print $story['title']; ?></span>
 		</h2>
 
+		<?php
+			$option = get_option_by_id($parent_option_id);
+			echo "<h3>" . $option['content'] . "</h3>"
+		?>
+
 			<?php if (!empty($message)) {echo "<div class=\"message\">" . $message . "</div>";} ?>
 			<?php if (!empty($errors)) { display_errors($errors); } ?>
 

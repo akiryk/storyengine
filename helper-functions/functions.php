@@ -6,22 +6,22 @@ function mysql_prep($value){
 	$magic_quotes_active = get_magic_quotes_gpc();
 	// id PHP version based on functionality
 	$new_enough_php = function_exists("mysql_real_escape_string"); // i.e. PHP >= v4.3
-	
+
 	// Modify $value based on version & configuration
 	if ($new_enough_php){
 		if ($magic_quotes_active){
 			// strip the slashes that would be inserted.
 			$value = stripslashes($value);
-		} 
+		}
 		// It's a new enough version, so we can use this function
-		$value = mysql_real_escape_string($value);	
+		$value = mysql_real_escape_string($value);
 
 	} else {  // It's an older version of php
-	
+
 		if (!$magic_quotes_active){
 			// strip the slashes that would be inserted.
 			$value = addslashes($value);
-		} 
+		}
 	}
 	return $value;
 }
@@ -61,8 +61,8 @@ function get_all_stories() {
 	confirm_query($story_set);
 	return $story_set;
 	// if result set has nothing in it, fetch array will return false
-	
-	// find out how many rows are in the table 
+
+	// find out how many rows are in the table
 
 $r = mysql_fetch_row($story_set);
 $numrows = $r[0];
@@ -108,7 +108,7 @@ function user_has_stories($user_id){
 	$query .=	"WHERE u.id = {$user_id}";
 	$story_set = mysql_query($query, $connection);
 	confirm_query($story_set);
-	
+
 	// if result set has nothing in it, fetch array will return false
 	if (mysql_num_rows($story_set) > 0){ // if $subject is true
 		return $story_set;
@@ -128,7 +128,7 @@ function find_selected_story(){
 	} else {
 		return get_beginning_of_story();
 	}
-	
+
 }
 
 // Returns ID of chapter based on GET variable
@@ -145,7 +145,7 @@ function find_selected_chapter(){
 	} else {
 		redirect_to('404.php');
 	}
-	
+
 }
 
 function get_first_chapter_of_story($id){
@@ -157,10 +157,10 @@ function get_first_chapter_of_story($id){
 function get_story_children_n($id){
 	global $connection;
 	// SELECT DISTINCT removes duplicates from query
-	$query = "SELECT DISTINCT chapters.id 
-	FROM chapters LEFT JOIN story_chapter ON chapters.id = story_chapter.chapter_id 
+	$query = "SELECT DISTINCT chapters.id
+	FROM chapters LEFT JOIN story_chapter ON chapters.id = story_chapter.chapter_id
 	LEFT JOIN stories
-	ON story_chapter.story_id = stories.id 
+	ON story_chapter.story_id = stories.id
 	WHERE stories.id=$id";
 	$result_set = mysql_query($query, $connection);
 	confirm_query($result_set);
@@ -175,7 +175,7 @@ function get_just_options($chapter_id){
 	if ($children = get_options_by_chapter_id($chapter_id)){
 		while($child = mysql_fetch_array($children)){
 			$options[$i] = $child;
-			$i++;	
+			$i++;
 		}
 		return $options;
 	}
@@ -197,7 +197,7 @@ function get_story_by_id($id){
 	} else {
 		return NULL;
 	}
-}	
+}
 
 function get_chapter_by_id($id){
 	global $connection;
@@ -248,24 +248,44 @@ function get_option_by_id($id){
 	}
 }
 
+/**
+ * Get the option that leads to a chapter
+ * e.g. You are on and island and have two options, Go North or Go South.
+ * Say you choose to create or edit the chapter for Go North.
+ * "Go North" is therefore the parent option.
+ * @param {Number} $id, the id of a chapter
+ * @return {Result} An record from the options table
+ */
+function get_option_by_child_chapter_id($id) {
+	global $connection;
+	$query = "SELECT * FROM options WHERE child_chapter = " . $id;
+	$result_set = mysql_query($query, $connection);
+	confirm_query($result_set);
+	if ($option = mysql_fetch_array($result_set)){
+		return $option;
+	} else {
+		return NULL;
+	}
+}
+
 // Get the options that are connected to a specified chapter
-function get_options_by_chapter_id($id) { 	
+function get_options_by_chapter_id($id) {
 	global $connection;
 	$query = "SELECT options.content, options.id, options.child_chapter ";
 	$query .= "FROM options ";
 	$query .= "LEFT JOIN chapter_option ";
 	$query .= "ON options.id = chapter_option.option_id ";
 	$query .= "LEFT JOIN chapters ";
-	$query .= "ON chapter_option.chapter_id = chapters.id ";	
+	$query .= "ON chapter_option.chapter_id = chapters.id ";
 	$query .= "WHERE chapters.id= " . $id;
-	$query .= " ORDER BY options.id ASC "; 
+	$query .= " ORDER BY options.id ASC ";
 	$result_set = mysql_query($query, $connection);
 	confirm_query($result_set);
 	if (mysql_num_rows($result_set) > 0){ // if there are rows in $result_set
 		return $result_set;
 	} else {
 		return false;
-	}	
+	}
 }
 
 // Get the story id based on a chapter id
@@ -309,7 +329,7 @@ function get_chapters_in_story($id){
 function link_story_to_option($story_id,$option_id){
 	$query =   "UPDATE 		options
 				SET 		child_chapter	= 	{$story_id}
-				WHERE		id	=	{$option_id}";					
+				WHERE		id	=	{$option_id}";
 	$result = mysql_query($query);
 	confirm_query($result);
 	return true;
@@ -317,28 +337,30 @@ function link_story_to_option($story_id,$option_id){
 
 // After deleting a chapter, send the user to the parent of that chapter
 function get_parent_of_chapter($id){
-	$query = "SELECT chapter_option.chapter_id FROM chapter_option 
-				LEFT JOIN options ON chapter_option.option_id =  options.id 
+	$query = "SELECT chapter_option.chapter_id FROM chapter_option
+				LEFT JOIN options ON chapter_option.option_id =  options.id
 				WHERE options.child_chapter = {$id}";
 	$result_set = mysql_query($query);
 	confirm_query($result_set);
-	if ($result = mysql_fetch_array($result_set)){ 
+	if ($result = mysql_fetch_array($result_set)){
 		return $result;
 	} else {
 		return NULL;
 	}
 }
 
-// Get a list of all chapters in a story that are missing one or both child_chapters
+/**
+ *  Get a list of all chapters in a story that are missing one or both child_chapters
+ * @param {Number} id, the id of the story
+ */
 function get_orphan_chapters($id){
-	// ******* Order by is supposedly better done with php sort, not mysql
 	$story = get_story_by_id($id);
 	global $connection;
 	// SELECT DISTINCT removes duplicates from query
-	$query = "SELECT DISTINCT chapters.content, chapters.id, chapters.level 
-	FROM chapters LEFT JOIN story_chapter ON chapters.id = story_chapter.chapter_id 
+	$query = "SELECT DISTINCT chapters.content, chapters.id, chapters.level
+	FROM chapters LEFT JOIN story_chapter ON chapters.id = story_chapter.chapter_id
 	LEFT JOIN stories
-	ON story_chapter.story_id = stories.id 
+	ON story_chapter.story_id = stories.id
 	LEFT JOIN chapter_option ON chapters.id = chapter_option.chapter_id
 	LEFT JOIN options ON chapter_option.option_id = options.id
 	WHERE stories.id=$id
@@ -349,7 +371,6 @@ function get_orphan_chapters($id){
 	ORDER BY chapters.level ASC";
 	$result_set = mysql_query($query, $connection);
 	confirm_query($result_set);
-	
 	return $result_set;
 }
 
@@ -363,12 +384,12 @@ function paginate_stories(){
 	$result = mysql_query($sql, $connection) or trigger_error("SQL", E_USER_ERROR);
 	$r = mysql_fetch_row($result);
 	$numrows = $r[0];
-	
+
 	// number of rows to show per page
 	$rowsperpage =5;
 	// find out total pages
 	$totalpages = ceil($numrows / $rowsperpage);
-	
+
 	// get the current page or set a default
 	if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
 	   // cast var as int
@@ -377,7 +398,7 @@ function paginate_stories(){
 	   // default page num
 	   $currentpage = 1;
 	} // end if
-	
+
 	// if current page is greater than total pages...
 	if ($currentpage > $totalpages) {
 	   // set current page to last page
@@ -388,31 +409,31 @@ function paginate_stories(){
 	   // set current page to first page
 	   $currentpage = 1;
 	} // end if
-	
-	// the offset of the list, based on current page 
+
+	// the offset of the list, based on current page
 	$offset = ($currentpage - 1) * $rowsperpage;
-	
-	// get the info from the db 
+
+	// get the info from the db
 	$sql = "SELECT " . $rows . " FROM " . $table . " LIMIT $offset, $rowsperpage";
 	$result = mysql_query($sql, $connection) or trigger_error("SQL", E_USER_ERROR);
-	
+
 	// create the nice html to render
 	$output = "<ul class=\"story-list\">";
 	// while there are rows to be fetched...
 	while ($story = mysql_fetch_assoc($result)) {
 		$total = get_story_children_n($story['id']);
 	   // echo data
-	   $output .= "<li><a href=\"start_new_story.php?story={$story['id']}\">{$story['title']}</a> 
+	   $output .= "<li><a href=\"start_new_story.php?story={$story['id']}\">{$story['title']}</a>
 					<span class='secondary'>{$total} chapters</span></li>";
 	} // end while
 	$output .="</ul>"; // close the list
 	echo $output;
 	echo '<a href="new_story.php" class="button new-story">Create a story</a>';
-	
+
 	/******  build the pagination links ******/
 	// range of num links to show
 	$range = 3;
-	
+
 	// if not on page 1, don't show back links
 	if ($currentpage > 1) {
 	   // show << link to go back to page 1
@@ -421,8 +442,8 @@ function paginate_stories(){
 	   $prevpage = $currentpage - 1;
 	   // show < link to go back to 1 page
 	   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$prevpage'><</a> ";
-	} // end if 
-	
+	} // end if
+
 	// loop to show links to range of pages around current page
 	for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
 	   // if it's a valid page number...
@@ -436,14 +457,14 @@ function paginate_stories(){
 	         // make it a link
 	         echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$x'>$x</a> ";
 	      } // end else
-	   } // end if 
+	   } // end if
 	} // end for
-	                 
-	// if not on last page, show forward and last page links        
+
+	// if not on last page, show forward and last page links
 	if ($currentpage != $totalpages) {
 	   // get next page
 	   $nextpage = $currentpage + 1;
-	    // echo forward link for next page 
+	    // echo forward link for next page
 	   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage'>></a> ";
 	   // echo forward link for lastpage
 	   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a> ";

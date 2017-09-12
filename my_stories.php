@@ -24,7 +24,7 @@
 		<?php
 		  $message ="";
 			global $connection;
-			$pager = new Pager($connection, "user-stories");
+		  $pager = new Pager($connection, "user-stories");
 			$result = $pager->getResult();
 		?>
 
@@ -41,9 +41,9 @@
 						<div class="story-options">
 						  <div class="menu-edit-link mini-button">
 						    <a href="orphans.php?story=<?php echo $story['id']; ?>">See orphans</a></div>
-							<?php if (is_admin()): ?>
-								<div class="delete mini-button"><a href="delete_story.php?story=<?php echo $story['id'];?>">Delete Story</a></div>
-							<?php endif; ?>
+								<?php if (is_admin()): ?>
+									<div class="delete mini-button"><a href="delete_story.php?story=<?php echo $story['id'];?>">Delete Story</a></div>
+								<?php endif; ?>
 						</div>
 					</li>
 			<?php } ?>

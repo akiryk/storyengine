@@ -15,7 +15,7 @@
 	These chapters that are missing one or both options. The body of the chapter is written, but the options don't lead anywhere. You should edit chapters with lower level numbers first because they occur earlier in the story.
   </p>
 </div>
-<?php 
+<?php
 	// Get story id from the URL parameters
  	$story_id = intval($_GET['story']);
 	// Get a list of all orphan chapters in this story (chapters that aren't endings but that are missing child-chapters)
@@ -29,7 +29,7 @@
       	  <?php print $chapter['content'];?>
       	 </a>
       </div>
-		<?php } 
+		<?php }
 	} ?>
 
 <?php include("includes/footer.php")?>
