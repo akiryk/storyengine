@@ -36,25 +36,28 @@
 	if (isset($_POST['submit'])) { // Form has been submitted.
 
 		$errors = array();
+		$endpoint = FALSE;
 
 		// check for endpoint
-		if (isset ($_POST['endpoint'])){
-			// false, so keep the story going.
-			$endpoint = 0;
-		} else {
-			// true, so end the story (no options)
-			$endpoint = 1;
-		};
+		if (isset($_POST['endpoint']) && $_POST['endpoint'] == 1){
+			echo "endpoint is " . $_POST['endpoint'];
+			echo "<br /> so end";
+			exit();
+			$endpoint = TRUE;
+		}
+		echo "endpoint is " . $_POST['endpoint'];
+			echo "<br /> so keep going";
+			exit();
 		// increment level
 		$level = $variables["level"] + 1;
 
 		// Do form validation
 		// Form validation
 		$errors = array(); // new array
-		if (!$endpoint){
-			$req_fields = array('content','option0','option1');
-		} else {
+		if ($endpoint){
 			$req_fields = array('content');
+		} else {
+			$req_fields = array('content','option0','option1');
 		}
 		foreach ($req_fields as $field){
 			if (!isset($_POST[$field]) || empty($_POST[$field])){

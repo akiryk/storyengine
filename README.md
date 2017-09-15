@@ -1,5 +1,8 @@
 # Story Engine
 
+## TODOS:
+1. Fix the confirm_continue.php code so that app knows whether to continue a chapter. This has something to do with setting the checked to true or false; possibly get rid of the value. Look into $_POST because I'm not sure how or what that's being set.
+
 A build-your-own-adventure making app built with php 5.5.38
 
 ### Install Locally
