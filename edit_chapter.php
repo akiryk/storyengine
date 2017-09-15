@@ -43,7 +43,6 @@
 		}
 
 		if (empty($errors)){
-
 			// No errors, so update database:
 			// Get the variables set in the new_subject.php form and modify them using our
 			// mysql_prep() function in functions.php to ensure SQL correctness.
@@ -69,6 +68,7 @@
 								"id"=>intval(mysql_prep($options[1]["id"])),
 								"content"=>trim(mysql_prep($_POST['option1'])))
 							);
+
 			include("includes/edit_options.php");
 
 			// Test for success (make sure 1 row was changed)

@@ -148,8 +148,16 @@ function find_selected_chapter(){
 
 }
 
+/**
+ * Get first chapter of a story based on that story's id
+ * @param {Number} $id, the story id
+ * @return {Array} row of data from the story's first chapter
+ */
 function get_first_chapter_of_story($id){
 	$story = get_story_by_id($id);
+	if (!$story['first_chapter']) {
+		redirect_to("new_chapter.php?parent_option_id=0&level=0&story_id={$id}");
+	}
 	return get_chapter_by_id($story['first_chapter']);
 }
 

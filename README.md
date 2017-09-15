@@ -29,6 +29,7 @@ Call it "story_engine" (or whatever you'd like). If using phpMyAdmin, leave defa
 *Start mysql from command line on Mac not using MAMP:*
 ```
 /usr/local/mysql/bin/mysql -u root -p
+USE story_engine
 ```
 *If you'd like to clear out existing tables and rows beforehand:*
 ```

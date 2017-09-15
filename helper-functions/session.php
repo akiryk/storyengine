@@ -17,7 +17,7 @@
 		// clear session of previous story id,
 		// update with new story id,
 		// then redirect to first chapter of the story
-		if (!empty($_GET['story']) && intval($_GET['story']) > 0){
+		if (isset($_GET['story']) && intval($_GET['story']) > 0){
 				// The story variable is set, meaning we're starting a new story.
 				// This variable is only set when clicking a story from a story list (e.g. my_stories or index)
 				$_SESSION['story_id'] = intval($_GET['story']);

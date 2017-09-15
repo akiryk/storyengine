@@ -1,5 +1,5 @@
 <?php
- // see data.php (not in git) for username and password on server
+// see data.php (not in git) for username and password on server
 ?>
 <?php
  // Database Constants

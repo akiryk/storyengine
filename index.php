@@ -21,13 +21,12 @@
 		global $connection;
 		$pager = new Pager($connection, "all-stories");
 		$result = $pager->getResult();
-		?>
+	?>
 
 		<ul class="story-list">
 			<?php // while there are rows to be fetched...
 			while ($story = mysql_fetch_assoc($result)) {
-				$total = get_story_children_n($story['id']);
-		   	// echo data ?>
+				$total = get_story_children_n($story['id']); ?>
 		   	<li>
 		   		<a href="start_new_story.php?story=<?php echo $story['id'];?>"><?php print $story['title'];?></a>
 						<span class="secondary"><?php print $total;?> chapters</span>
@@ -40,7 +39,7 @@
 		<a href="new_story.php" class="button new-story">Create a story</a>
 
 		<div class="pagination">
-			<?php // $pager->drawPaginationLinks(); ?>
+			<?php  $pager->drawPaginationLinks(); ?>
 		</div>
 
 

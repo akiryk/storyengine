@@ -13,13 +13,13 @@
   $pid="";
   $lvl="";
 
-  if (!empty($_GET['parent_option_id'])){
+  if (isset($_GET['parent_option_id'])){
   	$poid = intval($_GET['parent_option_id']);
   };
-  if (!empty($_GET['parent_id'])){
+  if (isset($_GET['parent_id'])){
   	$pid = intval($_GET['parent_id']);
   };
-  if (!empty($_GET['level'])){
+  if (isset($_GET['level'])){
   	$lvl = intval($_GET['level']);
   };
 
@@ -34,6 +34,7 @@
 
 	// START FORM PROCESSING
 	if (isset($_POST['submit'])) { // Form has been submitted.
+
 		$errors = array();
 
 		// check for endpoint
@@ -169,6 +170,7 @@
 		// Nothing to set...
 	}
 ?>
+
 <?php include("includes/header.php"); ?>
 <?php
 
@@ -179,12 +181,12 @@
 	} else {
 		$story = get_story_by_id($_SESSION['story_id']);
 	}
-	$first_chapter;
+	$first_chapter = false;
 	if ($variables["parent_option_id"] == 0){
 		$first_chapter=true;
+	}
+	if ($variables["success"] == 1) {
 		$message = "Your story has been saved! Get started...";
-	} else {
-		$first_chapter=false;
 	}
 ?>
 		<!-- TITLE -->

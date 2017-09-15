@@ -1,6 +1,6 @@
-<?php 
+<?php
 // Both new_chapter.php and edit_chapter.php call the same functions for adding and editing options
-			
+
 // Only UPDATE the first option if it already exists. Otherwise, do a CREATE.
 
 foreach ($options as $option){
@@ -23,7 +23,7 @@ foreach ($options as $option){
 				$errors[] = "problem with first insert. Story id: " . $chapter_id . " and option id: " . $option1ID . mysql_error();
 			}
 		}
-		
+
 	} else {
 		// There is an option 1, so UPDATE
 		// OPTIONS TABLE UPDATE
@@ -37,7 +37,7 @@ foreach ($options as $option){
 			// It's not the end, so keep options
 			$query =   "UPDATE 		options
 						SET 		content		= 	'{$content}'
-						WHERE		id	=	{$option_id}";					
+						WHERE		id	=	{$option_id}";
 			$result = mysql_query($query, $connection);
 			if (!$result){
 				$errors[] = mysql_error();
@@ -45,5 +45,5 @@ foreach ($options as $option){
 		}
 	}
 }
-		
+
 ?>
