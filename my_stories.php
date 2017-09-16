@@ -41,14 +41,18 @@
 						<div class="story-options">
 						  <div class="menu-edit-link mini-button">
 						    <a href="orphans.php?story=<?php echo $story['id']; ?>">See orphans</a></div>
-								<?php if (is_admin()): ?>
-									<div class="delete mini-button"><a href="delete_story.php?story=<?php echo $story['id'];?>">Delete Story</a></div>
-								<?php endif; ?>
+								<?php
+									if (is_admin()):
+										include("includes/delete_story.php");
+									endif;
+								?>
 						</div>
 					</li>
 			<?php } ?>
 				</ul>
-		<div class="clearfix"><a class="button" href="new_story.php">Create a new story</a></div>
+		<div class="clearfix">
+			<?php include("includes/new_story_button.php"); ?>
+		</div>
 		<?php
 			// $pager->drawPaginationLinks();
 		?>

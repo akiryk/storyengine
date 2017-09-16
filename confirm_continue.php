@@ -8,8 +8,9 @@
    */
 ?>
 
-<div id="endpoint">
-  <input class="endtarget" type="checkbox" name="endpoint" id="confirm-continue" <?php echo ($select_chapter['endpoint'] == 1 ? 'value="1" checked' : 'value="0"');?> />
-  <label for="confirm-continue">End the story here.</label>
+<div id="endpoint-wrapper">
+  <input type="checkbox" id="endpoint" name="endpoint" value="true"
+    <?php $endpoint == 1 ? print "checked" : print ""; ?>
+  />
+  <label for="endpoint">End the story here.</label>
 </div><!-- endpoint -->
-

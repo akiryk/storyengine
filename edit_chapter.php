@@ -24,9 +24,9 @@
 	if (isset($_POST['submit'])){
 		// Get endpoint radio button, since required fields vary depending on this number
 		if (isset ($_POST['endpoint'])){
-			$endpoint = 0;
-		} else {
 			$endpoint = 1;
+		} else {
+			$endpoint = 0;
 		};
 		// Do form validation
 		// Form validation

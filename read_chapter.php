@@ -39,7 +39,7 @@
 
 		<?php
 			// OPTIONS or END OF CHAPTER
-			if ($select_chapter['endpoint'] == 1){
+			if ($select_chapter['endpoint'] == 1 && !$select_chapter['beginning'] == 1){
 					include("includes/chapter_end.php");
 			} else {
 					include("includes/chapter_options.php");

@@ -1,10 +1,11 @@
 $(document).ready(function() {
 		// EDIT: find out if the endpoint button is checked
-  var end_story = $(".endtarget").is(':checked');
+  var end_story = $("#endpoint").is(':checked');
 	if (end_story==true) {
 	  $('#edit-options').toggle();
 	}
-	$('.endtarget').change(function() {
+	$('#endpoint').change(function() {
+		console.log('change!')
 	 	if ( $(this). prop("checked") == false ){
 			$('#edit-options').slideDown();
 		} else {

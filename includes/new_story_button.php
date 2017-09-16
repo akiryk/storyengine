@@ -1,0 +1,1 @@
+<a href="new_story.php" class="button new-story">Start a new story</a>

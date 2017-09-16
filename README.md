@@ -36,6 +36,7 @@ USE story_engine
 ```
 *If you'd like to clear out existing tables and rows beforehand:*
 ```
+USE story_engine
 DROP TABLE users, stories, stories_users, chapters, story_chapter, options, chapter_option;
 ```
 *Add tables and rows to the DB:*

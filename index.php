@@ -30,9 +30,11 @@
 		   	<li>
 		   		<a href="start_new_story.php?story=<?php echo $story['id'];?>"><?php print $story['title'];?></a>
 						<span class="secondary"><?php print $total;?> chapters</span>
-						<?php if (is_admin()): ?>
-							<div class="delete mini-button"><a href="delete_story.php?story=<?php echo $story['id'];?>">Delete Story</a></div>
-						<?php endif; ?>
+						<?php
+							if (is_admin()):
+								include("includes/delete_story.php");
+							endif;
+						?>
 				</li>
 			<?php } // end while ?>
 		</ul>

@@ -36,18 +36,13 @@
 	if (isset($_POST['submit'])) { // Form has been submitted.
 
 		$errors = array();
-		$endpoint = FALSE;
+		$endpoint = 0;
 
 		// check for endpoint
-		if (isset($_POST['endpoint']) && $_POST['endpoint'] == 1){
-			echo "endpoint is " . $_POST['endpoint'];
-			echo "<br /> so end";
-			exit();
-			$endpoint = TRUE;
+		if (isset($_POST['endpoint']) && $_POST['endpoint'] == 'true'){
+			$endpoint = 1;
 		}
-		echo "endpoint is " . $_POST['endpoint'];
-			echo "<br /> so keep going";
-			exit();
+
 		// increment level
 		$level = $variables["level"] + 1;
 
@@ -69,7 +64,7 @@
 		// $required_fields = array('content');
 		// Content is always required
 		// The options are only required if this isn't an endpoint
-		if ($endpoint==0){
+		if (!$endpoint){
 			// $required_fields[] = 'option1';
 			// 		$required_fields[] = 'option2';
 			$option0 = trim(mysql_prep($_POST['option0']));
@@ -89,6 +84,7 @@
 		} else {
 			$beginning = 0;
 		}
+
 		if ( empty($errors) ) {
 			// CREATE THE CHAPTER
 			$query = "INSERT INTO chapters (
@@ -96,6 +92,7 @@
 						) VALUES (
 							'{$content}', {$beginning}, {$endpoint}, {$level}
 						)";
+
 			// Confirm if the query is successful.
 			$result = mysql_query($query, $connection);
 			if (!$result){
@@ -140,14 +137,12 @@
 					$errors[] = mysql_error();
 				}
 
-
 				// Check whether we need options
 				if ($endpoint == 0) { // not an endpoint, so insert options
-					$options = array("first" => array(
-										"content"=> $option0),
-										"second" => array(
-										"content"=> $option1)
-									);
+					$options = array(
+						"first" => array("content"=> $option0),
+						"second" => array("content"=> $option1)
+					);
 					include("includes/edit_options.php");
 				}
 

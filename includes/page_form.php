@@ -3,7 +3,14 @@
 
 <?php
 	$chap_content = "";
-	$options_display = "style='display: block'";
+	$endpoint = 0;
+	$options_display = "display: block";
+
+	if (isset($select_chapter['endpoint']) && $select_chapter['endpoint'] == 1){
+		$options_display = "display: none";
+		$endpoint = 1;
+	}
+
 	if (!empty($select_chapter['content'])){
 		$chap_content = trim($select_chapter['content']);
 	}
@@ -15,7 +22,7 @@
 <?php include("confirm_continue.php"); ?>
 
 	<!-- Display the options (js will hide these if chapter is an endpoint) -->
-	<div id="edit-options" <?php echo $options_display; ?> >
+	<div id="edit-options" style=<?php echo $options_display; ?> >
 		<div class="option">
 			<label for="option1">Option 1</label>
 				<input type="text" name="option0" size="40" maxlength="100" class="input"

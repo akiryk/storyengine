@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<link href="stylesheets/styles.css" rel="stylesheet" type="text/css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="js/scripts.js"></script>
+	<script src="js/scripts012.js"></script>
 </head>
 
 <body>
@@ -19,10 +19,10 @@
 				<h1 class="brandname">
 					<a href="index.php">Storili</a>
 				</h1>
-			</div>	
+			</div>
 			<div id="menu-link">
 				Menu
-			</div>			
+			</div>
 			<div id="primary-navigation">
 				<ul class="main-menu">
 					<?php if (logged_in()){ ?>
@@ -33,17 +33,17 @@
 					<?php } else { ?>
 						<li class="solo"><a href="index.php">All stories</a></li>
 					<?php } ?>
-			  </ul>	
-			
+			  </ul>
+
 			  <ul class="login-menu">
 					<?php if (logged_in()) { ?>
 						<li class="solo"><a href="logout.php">Log out</a></li>
-					<?php } else { ?> 
+					<?php } else { ?>
 						<li class="first"><a href="login.php">Log in</a></li>
 						<li class="last"><a href="new_user.php">Register</a></li>
-					<?php } ?>		
+					<?php } ?>
 	      </ul>
-			</div> <!-- #navigation -->	
+			</div> <!-- #navigation -->
 		</div> <!-- #header-inner -->
 	</div> <!-- header -->
 <div id="content-wrapper">
