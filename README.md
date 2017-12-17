@@ -1,7 +1,9 @@
 # Story Engine
 
 ## TODOS:
-1. Fix the confirm_continue.php code so that app knows whether to continue a chapter. This has something to do with setting the checked to true or false; possibly get rid of the value. Look into $_POST because I'm not sure how or what that's being set.
+* Clean up php code style
+* Create smart modular bits and store them in smart locations
+* Fix typography design here and there
 
 A build-your-own-adventure making app built with php 5.5.38
 
@@ -53,7 +55,7 @@ CREATE TABLE users (
 
 CREATE TABLE stories (
   id INT NOT NULL AUTO_INCREMENT,
-  title CHAR (30) NOT NULL,
+  title VARCHAR (40) NOT NULL,
   first_chapter INT DEFAULT NULL,
   PRIMARY KEY (id)
 );
@@ -84,7 +86,7 @@ CREATE TABLE story_chapter (
 CREATE TABLE options (
   id INT NOT NULL AUTO_INCREMENT,
   child_chapter INT DEFAULT 0,
-  content CHAR (40),
+  content VARCHAR (60),
   PRIMARY KEY (id)
 );
 
@@ -96,4 +98,9 @@ CREATE TABLE chapter_option (
 );
 ```
 *Register a new user on the site*
-If you'd like, use phpMyAdmin to change `admin` row to 1.
+* Using phpMyAdmin: Change `admin` row to 1.
+* In terminal: `UPDATE users SET admin = NULL WHERE id = 1;`
+
+### Copy to remote server
+1. Make sure that c/constants.php data are correct, e.g, check on server to ensure each of the constants works.
+2. Copy to server.

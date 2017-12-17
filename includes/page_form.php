@@ -25,12 +25,12 @@
 	<div id="edit-options" style=<?php echo $options_display; ?> >
 		<div class="option">
 			<label for="option1">Option 1</label>
-				<input type="text" name="option0" size="40" maxlength="100" class="input"
+				<input type="text" name="option0" size="60" maxlength="60" class="input"
 					value="<?php if (!empty($options[0]['content'])) echo $options[0]['content'] ?>" id="option0">
 		</div>
 		<div class="option">
 			<label for="option2">Option 2 </label>
-				<input type="text" name="option1" size="40" maxlength="100" class="input"
+				<input type="text" name="option1" size="60" maxlength="60" class="input"
 					value="<?php if (!empty($options[1]['content'])) echo $options[1]['content'] ?>" id="option1">
 		</div>
 	</div> <!-- options -->
